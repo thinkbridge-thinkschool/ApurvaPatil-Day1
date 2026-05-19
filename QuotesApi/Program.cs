@@ -7,6 +7,8 @@ using QuotesApi.Extensions;
 using QuotesApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 // ============================================================================
 // SERVICES CONFIGURATION
@@ -73,6 +75,9 @@ using (var scope = app.Services.CreateScope())
 // ============================================================================
 // ENDPOINTS
 // ============================================================================
+app.UseSwagger();
+
+app.UseSwaggerUI();
 
 app.MapQuoteEndpoints();
 
