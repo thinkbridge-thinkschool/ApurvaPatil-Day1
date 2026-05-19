@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using QuotesApi.Data;
 using QuotesApi.Repositories;
 using QuotesApi.Extensions;
+using QuotesApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddLogging();
+builder.Services.AddSingleton<IClock, SystemClock>();
+
+builder.Services.AddTransient<IGuidService, GuidService>();
 
 var app = builder.Build();
 
